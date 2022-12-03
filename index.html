@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
+</head>
+<body class="root">
+    <div class="root__container">
+
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+
+        <main>
+            <section class="profile">
+                <div class="profile__user">
+                    <div class="profile__photo"></div>
+                    <div class="profile__info">
+                        <div class="profile__name-and-edit">
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <form>
+                                <button class="profile__edit-button">
+                                </button>
+                            </form>
+                        </div>
+                        <p class="profile__description">Исследователь океана</p>
+                    </div>
+                </div>
+                <form>
+                    <button class="profile_add-button">
+                    </button>
+                </form>
+            </section>
+
+            <section class="popup">
+                <div class="popup__opacity">
+                    <div class="popup__container">
+                        <h2 class="popup__title">
+                            Редактировать профиль
+                        </h2>
+                        <form class="popup__form">
+                            <button class="popup__close">
+                            </button>
+                            <input type="text" class="popup__name">
+                            <input type="text" class="popup__about">
+                            <button type="submit" class="popup__submit">
+                                Сохранить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="elements">
+                <div class="elements__item">
+                    <img src="./images/elements/karachaevsk.jpg" alt="Старинное здание Карачаевска" class="elements__image">
+                    <div class="elements__info">
+                        <h2 class="elements__title">
+                            Карачаевск
+                        </h2>
+                        <form>
+                            <button class="elements__like-button">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="elements__item">
+                    <img src="./images/elements/elbrus.jpg" alt="Гора Эльбрус вдалеке" class="elements__image">
+                    <div class="elements__info">
+                        <h2 class="elements__title">
+                            Гора Эльбрус
+                        </h2>
+                        <form>
+                            <button class="elements__like-button">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="elements__item">
+                    <img src="./images/elements/dombay.jpg" alt="Горы и леса Домбая" class="elements__image">
+                    <div class="elements__info">
+                        <h2 class="elements__title">
+                            Домбай
+                        </h2>
+                        <form>
+                            <button class="elements__like-button">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="elements__item">
+                    <img src="./images/elements/elbrus.jpg" alt="Гора Эльбрус вдалеке" class="elements__image">
+                    <div class="elements__info">
+                        <h2 class="elements__title">
+                            Гора Эльбрус
+                        </h2>
+                        <form>
+                            <button class="elements__like-button">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="elements__item">
+                    <img src="./images/elements/dombay.jpg" alt="Горы и леса Домбая" class="elements__image">
+                    <div class="elements__info">
+                        <h2 class="elements__title">
+                            Домбай
+                        </h2>
+                        <form>
+                            <button class="elements__like-button">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="elements__item">
+                    <img src="./images/elements/karachaevsk.jpg" alt="Старинное здание Карачаевска" class="elements__image">
+                    <div class="elements__info">
+                        <h2 class="elements__title">
+                            Карачаево-Черкессия
+                        </h2>
+                        <form>
+                            <button class="elements__like-button">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__copyright">
+                &copy; 2022 Mesto Russia
+            </p>
+        </footer>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>
