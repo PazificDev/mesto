@@ -8,4 +8,4 @@
 3. Внутренняя структура сайта соответствует Nested БЭМ.
 4. Для работы с попапом использован js.
 
-[Место](https://pazificdev.github.io/russian-travel/)
+[Место](https://pazificdev.github.io/mesto/)
