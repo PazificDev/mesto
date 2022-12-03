@@ -19,6 +19,7 @@
     .profile__add-button {
             margin-top: calc((100vw - 320px) / (880 - 320) * (0 - 36) + 36px);
             width: calc((100vw - 320px) / (880 - 320) * (150 - 282) + 282px);
+            background-size: 16px;
     }
 }
 

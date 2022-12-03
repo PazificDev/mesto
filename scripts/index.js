@@ -2,38 +2,30 @@ const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
 const submitButton = document.querySelector('.popup__submit');
-const likeForm = document.querySelectorAll('.elements__item');
+const nameContainer = document.querySelector('.profile__name');
+const nameEdit = document.querySelector('.popup__input_name');
+const aboutContainer = document.querySelector('.profile__description');
+const aboutEdit = document.querySelector('.popup__input_about');
+let formElement = document.querySelector('.popup__form');
+let nameInput = formElement.querySelector('.popup__input_name');
+let jobInput = formElement.querySelector('.popup__input_about');
 
-editButton.addEventListener('click', function(event) {
-    event.preventDefault();
+editButton.addEventListener('click', function() {
     popup.classList.add('popup_opened');
-    const nameContainer = document.querySelector('.profile__name');
-    const nameEdit = document.querySelector('.popup__name');
-    nameEdit.value = nameContainer.innerHTML;
-    const aboutContainer = document.querySelector('.profile__description');
-    const aboutEdit = document.querySelector('.popup__about');
-    aboutEdit.value = aboutContainer.innerHTML;
+    nameEdit.value = nameContainer.textContent;
+    aboutEdit.value = aboutContainer.textContent;
 });
 
-let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__name');
-let jobInput = formElement.querySelector('.popup__about');
+closeButton.addEventListener('click', function() {
+    popup.classList.remove('popup_opened');
+});
 
 function handleFormSubmit (evt) {
     evt.preventDefault(); 
-    let editName = nameInput.value;
-    let editJob = jobInput.value;
-    let nameContainer = document.querySelector('.profile__name');
-    let aboutContainer = document.querySelector('.profile__description');
-    nameContainer.textContent = editName;
-    aboutContainer.textContent = editJob;
+    nameContainer.textContent = nameInput.value;
+    aboutContainer.textContent = jobInput.value;
     popup.classList.remove('popup_opened');
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
 
-
-closeButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    popup.classList.remove('popup_opened');
-})

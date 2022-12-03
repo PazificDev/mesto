@@ -7,6 +7,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 450px;
     padding-bottom: 7px;
 }
 
@@ -15,6 +16,7 @@
             font-size: calc((100vw - 320px) / (1280 - 320) * (42 - 27) + 27px);
             line-height: calc((100vw - 320px) / (1280 - 320) * (48 - 33) + 33px);
             margin-right: calc((100vw - 320px) / (1280 - 320) * (18 - 10) + 10px);
+            max-width: calc((100vw - 320px) / (1280 - 320) * (450 - 220) + 220px);
     }
 }
 
@@ -30,5 +32,6 @@
         line-height: 33px;
         margin-right: 10px;
         margin-left: 45px;
+        max-width: 220px;
     }
 }

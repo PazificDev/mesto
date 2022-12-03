@@ -6,12 +6,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 450px;
 }
 
 @media screen and (max-width: 1280px) {
     .profile__description {
             font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px);
             line-height: calc((100vw - 320px) / (1280 - 320) * (22 - 17) + 17px);
+            max-width: calc((100vw - 320px) / (1280 - 320) * (450 - 265) + 265px);
     }
 }
 
@@ -26,5 +28,7 @@
     .profile__description {
         font-size: 14px;
         line-height: 17px;
+        max-width: 265px;
+        margin-left: 20px;
     }
 }

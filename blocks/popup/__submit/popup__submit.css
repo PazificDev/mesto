@@ -21,6 +21,8 @@
     .popup__submit {
         width: calc((100vw - 320px) / (880 - 320) * (358 - 238) + 238px);
         margin-left: calc((100vw - 320px) / (880 - 320) * (36 - 22) + 22px);
+        font-size: calc((100vw - 320px) / (880 - 320) * (18 - 14) + 14px);
+        line-height: calc((100vw - 320px) / (880 - 320) * (22 - 17) + 17px);
     }
 }
 
@@ -28,5 +30,8 @@
     .popup__submit {
         width: 238px;
         margin-left: 22px;
+        margin-bottom: 25px;
+        font-size: 14px;
+        line-height: 17px;
     }
 }
