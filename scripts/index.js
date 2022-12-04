@@ -3,12 +3,12 @@ const closeButton = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
 const submitButton = document.querySelector('.popup__submit');
 const nameContainer = document.querySelector('.profile__name');
-const nameEdit = document.querySelector('.popup__input_name');
+const nameEdit = document.querySelector('.popup__input_edit_name');
 const aboutContainer = document.querySelector('.profile__description');
-const aboutEdit = document.querySelector('.popup__input_about');
+const aboutEdit = document.querySelector('.popup__input_edit_about');
 let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__input_name');
-let jobInput = formElement.querySelector('.popup__input_about');
+let nameInput = formElement.querySelector('.popup__input_edit_name');
+let jobInput = formElement.querySelector('.popup__input_edit_about');
 
 editButton.addEventListener('click', function() {
     popup.classList.add('popup_opened');

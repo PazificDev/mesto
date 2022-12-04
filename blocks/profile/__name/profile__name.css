@@ -20,18 +20,11 @@
     }
 }
 
-@media screen and (max-width: 582px) {
-    .profile__name {
-            margin-left: calc((100vw - 320px) / (582 - 320) * (0 - 45) + 45px);
-    }
-}
-
 @media screen and (max-width: 320px) {
     .profile__name {
         font-size: 27px;
         line-height: 33px;
-        margin-right: 10px;
-        margin-left: 45px;
-        max-width: 220px;
+        max-width: 240px;
+        margin: 0;
     }
 }

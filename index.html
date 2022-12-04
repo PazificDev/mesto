@@ -87,23 +87,18 @@
         </main>
 
         <section class="popup">
-            <div class="popup__opacity">
-            <!-- 
-            Я делал эту обертку для того, чтобы opacity была на всю страницу. У этого дива указана height: 100vh, чтобы попап был по центру экрана, а у секции высота 100%, что сместит попап на центр страницы,а не экрана, при удалении обертки. Если это некорректно и нужно сделать по-другому - отметьте, пожалуйста, как ошибку, буду думать. Спасибо. 
-            -->
-                <div class="popup__container">
-                    <h2 class="popup__title">
-                        Редактировать профиль
-                    </h2>
-                    <form name="editForm" class="popup__form">
-                        <button type="reset" class="popup__close"></button>
-                        <input type="text" name="nameEdit" class="popup__input popup__input_name">
-                        <input type="text" name="aboutEdit" class="popup__input popup__input_about">
-                        <button type="submit" class="popup__submit">
-                            Сохранить
-                        </button>
-                    </form>
-                </div>
+            <div class="popup__container">
+                <h2 class="popup__title">
+                    Редактировать профиль
+                </h2>
+                <form name="editForm" class="popup__form">
+                    <button type="button" class="popup__close"></button>
+                    <input type="text" name="nameEdit" class="popup__input popup__input_edit_name">
+                    <input type="text" name="aboutEdit" class="popup__input popup__input_edit_about">
+                    <button type="submit" class="popup__submit">
+                        Сохранить
+                    </button>
+                </form>
             </div>
         </section>
 
