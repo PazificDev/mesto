@@ -31,7 +31,7 @@ function closePopup (popupName) {
     popupName.classList.remove('popup_opened');
 }
 
-function popupProfileFormSubmit (evt) {
+function submitEditProfileForm (evt) {
     evt.preventDefault(); 
     profileName.textContent = popupProfileName.value;
     profileJob.textContent = popupProfileJob.value;
@@ -65,7 +65,7 @@ function createCard(title, src, alt) {
     return cloneElement;
 };
 
-function popupAddFormSubmit (evt) {
+function submitAddCardForm (evt) {
     evt.preventDefault(); 
     const newCard = createCard(popupAddTitle.value, popupAddPic.value, popupAddTitle.value);
     elementsContainer.prepend(newCard); 
@@ -90,7 +90,7 @@ popupProfileCloseButton.addEventListener('click', function() {
     closePopup(popupProfile);
 })
 
-popupProfileForm.addEventListener('submit', popupProfileFormSubmit);
+popupProfileForm.addEventListener('submit', submitEditProfileForm);
 
 buttonOpenAddCardPopup.addEventListener('click', function() {
     openPopup(popupAdd);
@@ -101,7 +101,7 @@ popupAddCloseButton.addEventListener('click', function() {
     closePopup(popupAdd);
 })
 
-popupAddForm.addEventListener('submit', popupAddFormSubmit);
+popupAddForm.addEventListener('submit', submitAddCardForm);
 
 closeButtonOpenImagePopup.addEventListener('click', function() {
     closePopup(popupOpenPic);
