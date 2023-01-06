@@ -52,11 +52,13 @@
                 <h2 class="popup__title">
                     Редактировать профиль
                 </h2>
-                <form name="editForm" class="popup__form">
+                <form name="editForm" class="popup__form" novalidate>
                     <button type="button" class="popup__close"></button>
-                    <input type="text" name="nameEdit" class="popup__input popup__input_edit_name" placeholder="Имя">
-                    <input type="text" name="aboutEdit" class="popup__input popup__input_edit_about" placeholder="Вид деятельности">
-                    <button type="submit" class="popup__submit">
+                    <input type="text" id="name" name="nameEdit" class="popup__input popup__input_edit_name" placeholder="Имя" minlength="2" maxlength="40" required>
+                    <span class="name-error popup__error"></span>
+                    <input type="text" id="about" name="aboutEdit" class="popup__input popup__input_edit_about" placeholder="Вид деятельности" minlength="2" maxlength="200" required>
+                    <span class="about-error popup__error"></span>
+                    <button type="submit" class="popup__button">
                         Сохранить
                     </button>
                 </form>
@@ -68,11 +70,13 @@
                 <h2 class="popup__title">
                     Новое место
                 </h2>
-                <form name="addForm" class="popup__form">
+                <form name="addForm" class="popup__form" novalidate>
                     <button type="button" class="popup__close"></button>
-                    <input type="text" name="titleEdit" class="popup__input popup__input_edit_title" placeholder="Название">
-                    <input type="text" name="picEdit" class="popup__input popup__input_edit_pic" placeholder="Ссылка на картинку">
-                    <button type="submit" class="popup__submit">
+                    <input type="text" id="picture" name="titleEdit" class="popup__input popup__input_edit_title" placeholder="Название" minlength="2" maxlength="30" required>
+                    <span class="picture-error popup__error"></span>
+                    <input type="url" id="link" name="picEdit" class="popup__input popup__input_edit_pic" placeholder="Ссылка на картинку" required>
+                    <span class="link-error popup__error"></span>
+                    <button type="submit" class="popup__button">
                         Создать
                     </button>
                 </form>
@@ -96,6 +100,7 @@
         </footer>
     </div>
     <script src="./scripts/constants.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
