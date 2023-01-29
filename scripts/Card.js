@@ -1,5 +1,5 @@
-import { openPopup, popupOpenPic, popupOpenPicImage, popupOpenPicTitle } from './index.js'
-import { initialCards } from './data.js';
+import { openPopup } from './utils.js'
+import { popupOpenPic, popupOpenPicImage, popupOpenPicTitle } from './data.js';
 
 export class Card {
     constructor(link, name, templateSelector) {
@@ -27,8 +27,7 @@ export class Card {
     }
 
     _handleTrashItem() {
-        const trashElement = this._element.querySelector('.elements__trash').closest('.elements__item');
-        trashElement.remove();
+        this._element.remove();
     }
     
     _setEventListeners() {
@@ -57,10 +56,3 @@ export class Card {
     }
 };
 
-initialCards.forEach(item => {
-    const card = new Card(item.link, item.name, '#element');
-    const cardElement = card.generateCard();
-    document.querySelector('.elements').append(cardElement);
-})
-
-// Я не понял почему, но если отрисовывать начальные карточки в index.js (70 строка) - возникает ошибка в консоли, что использование Card до определения невозможно, хотя Card я экспортирую первой же строчкой в index.js. А вот с отрисовкой карточек через попап добавления проблем не возникло.

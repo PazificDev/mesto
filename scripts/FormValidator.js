@@ -1,5 +1,3 @@
-
-
 export class FormValidator {
     constructor(validationConfig, formElement) {
         this._form = formElement;
@@ -16,15 +14,21 @@ export class FormValidator {
         inputElement.classList.add(this._inputErrorClass);
     }
 
-    hideInputError = (inputElement) => {
+    _hideInputError = (inputElement) => {
         const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
         errorElement.textContent = '';
         inputElement.classList.remove(this._inputErrorClass);
     }
+
+    hideInputErrors() {
+        this._inputList.forEach((item) => {
+            this._hideInputError(item);
+        });
+    }
         
     _checkValidity = (inputElement) => {
         if (inputElement.validity.valid) {
-            this.hideInputError(inputElement);
+            this._hideInputError(inputElement);
         } else {
             this._showInputError(inputElement);
         }

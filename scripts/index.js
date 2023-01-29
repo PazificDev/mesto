@@ -1,5 +1,6 @@
-import {Card} from './Card.js';
-import { validationConfig, initialCards } from './data.js';
+import { openPopup, closePopup } from './utils.js';
+import { validationConfig, initialCards, popupOpenPic, popupOpenPicTitle, popupOpenPicImage } from './data.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
 
@@ -18,40 +19,10 @@ const popupAddTitle = document.querySelector('.popup__input_edit_title');
 const popupAddPic = document.querySelector('.popup__input_edit_pic');
 const popupAddCloseButton = popupAdd.querySelector('.popup__close');
 const popupAddForm = popupAdd.querySelector('.popup__form');
-const popupAddButton = popupAddForm.querySelector('.popup__button');
 const elementsContainer = document.querySelector('.elements');
-export const popupOpenPic = document.querySelector('.popup_type_openPicture');
-export const popupOpenPicTitle = popupOpenPic.querySelector('.popup__title');
-export const popupOpenPicImage = popupOpenPic.querySelector('.popup__image');
-const closeButtonOpenImagePopup = popupOpenPic.querySelector('.popup__close');
-const addInputList = [popupAddTitle, popupAddPic];
+const buttonClosePopupImage = popupOpenPic.querySelector('.popup__close');
 
 // Функции
-
-function closePopupWithOverlay(evt) {
-    if (evt.target === evt.currentTarget) {
-        closePopup(evt.target);
-    }
-}
-
-function closePopupWithEsc(evt) {
-    if (evt.key === 'Escape') {
-        const activePopup = document.querySelector('.popup_opened');
-        closePopup(activePopup);
-    }
-}
-
-export function openPopup(popupName) {
-    popupName.classList.add('popup_opened');
-    popupName.addEventListener('click', closePopupWithOverlay);
-    document.addEventListener('keydown', closePopupWithEsc);
-}
-
-function closePopup(popupName) {
-    popupName.classList.remove('popup_opened');
-    popupName.removeEventListener('click', closePopupWithOverlay);
-    document.removeEventListener('keydown', closePopupWithEsc);
-}
 
 function submitEditProfileForm (evt) {
     evt.preventDefault(); 
@@ -60,19 +31,18 @@ function submitEditProfileForm (evt) {
     closePopup(popupProfile);
 }
 
-function submitAddCardForm(evt) {
-    evt.preventDefault(); 
-    const card = new Card(popupAddPic.value, popupAddTitle.value, '#element');
+function renderCards(link, name, selector) {
+    const card = new Card(link, name, selector);
     const cardElement = card.generateCard();
-    elementsContainer.prepend(cardElement); 
-    closePopup(popupAdd);
+
+    return cardElement;
 }
 
-// initialCards.forEach(item => {
-//     const card = new Card(item.link, item.name, '#element');
-//     const cardElement = card.generateCard();
-//     document.querySelector('.elements').append(cardElement);
-// });
+function submitAddCardForm(evt) {
+    evt.preventDefault(); 
+    elementsContainer.prepend(renderCards(popupAddPic.value, popupAddTitle.value, '#element')); 
+    closePopup(popupAdd);
+}
 
 // Скрипты
 
@@ -82,10 +52,13 @@ profileFormValidation.enableValidation();
 const addFormValidation = new FormValidator(validationConfig, popupAddForm);
 addFormValidation.enableValidation();
 
+initialCards.forEach(item => { 
+    document.querySelector('.elements').append(renderCards(item.link, item.name, '#element')); 
+}); 
+
 buttonOpenEditProfilePopup.addEventListener('click', function() {
     openPopup(popupProfile);
-    profileFormValidation.hideInputError(popupProfileName);
-    profileFormValidation.hideInputError(popupProfileJob);
+    profileFormValidation.hideInputErrors();
     popupProfileName.value = profileName.textContent;
     popupProfileJob.value = profileJob.textContent;
 });
@@ -99,8 +72,7 @@ popupProfileForm.addEventListener('submit', submitEditProfileForm);
 buttonOpenAddCardPopup.addEventListener('click', function() {
     popupAddForm.reset();
     addFormValidation.toggleSubmitButton();
-    addFormValidation.hideInputError(popupAddPic);
-    addFormValidation.hideInputError(popupAddTitle);
+    addFormValidation.hideInputErrors();
     openPopup(popupAdd);
 });
 
@@ -110,7 +82,7 @@ popupAddCloseButton.addEventListener('click', function() {
 
 popupAddForm.addEventListener('submit', submitAddCardForm);
 
-closeButtonOpenImagePopup.addEventListener('click', function() {
+buttonClosePopupImage.addEventListener('click', function() {
     closePopup(popupOpenPic);
 });
 
