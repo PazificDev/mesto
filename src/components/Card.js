@@ -1,25 +1,15 @@
-import { openPopup } from './utils.js'
-import { popupOpenPic, popupOpenPicImage, popupOpenPicTitle } from './data.js';
-
 export class Card {
-    constructor(link, name, templateSelector) {
+    constructor({link, name, handleCardClick}, templateSelector) {
         this._link = link;
         this._name = name;
+        this._handleCardClick = handleCardClick;
         this._templateSelector = templateSelector;
     }
 
     _getTemplate() {
-        const cardElement = document
-        .querySelector(this._templateSelector).content.querySelector('.elements__item').cloneNode(true);
+        const cardElement = document.querySelector(this._templateSelector).content.querySelector('.elements__item').cloneNode(true);
         
         return cardElement;
-    }
-
-    _handleOpenPopup() {
-        popupOpenPicImage.src = this._link;
-        popupOpenPicImage.alt = this._name;
-        popupOpenPicTitle.textContent = this._name;
-        openPopup(popupOpenPic);
     }
 
     _handleLikeItem() {
@@ -31,9 +21,7 @@ export class Card {
     }
     
     _setEventListeners() {
-        this._element.querySelector('.elements__image').addEventListener('click', () => {
-            this._handleOpenPopup();
-        });
+        this._element.querySelector('.elements__image').addEventListener('click', this._handleCardClick);
 
         this._element.querySelector('.elements__like-button').addEventListener('click', () => {
             this._handleLikeItem();
