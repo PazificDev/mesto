@@ -25,7 +25,6 @@ export class PopupWithForm extends Popup {
         super.setEventListeners();
     }
 
-    //setInputValues также записал на будущее, спасибо!
 
     close() {
         this._popupForm.reset();

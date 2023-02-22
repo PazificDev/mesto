@@ -16,11 +16,8 @@ const popupProfile = document.querySelector('.popup_type_editInfo');
 const popupProfileName = popupProfile.querySelector('.popup__input_edit_name');
 const popupProfileJob = popupProfile.querySelector('.popup__input_edit_about');
 const popupProfileForm = document.forms.editForm;
-const popupAdd = document.querySelector('.popup_type_addPic');
 const popupAddForm = document.forms.addForm;
 
-// Скрипты
-//Спасибо, учту про универсальное создание экземпляров, но пока оставлю на будущее, слишком много контента и информации:)
 const profileFormValidation = new FormValidator(validationConfig, popupProfileForm);
 profileFormValidation.enableValidation();
 
