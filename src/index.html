@@ -16,13 +16,16 @@
         <main class="content">
             <section class="profile">
                 <div class="profile__user">
-                    <div class="profile__photo"></div>
+                    <div class="profile__photocard">
+                        <img src="#" alt="Аватар" class="profile__photo"></img>
+                        <button class="profile__photo-edit-button"></button>
+                    </div>
                     <div class="profile__info">
                         <div class="profile__name-and-edit">
-                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <h1 class="profile__name"></h1>
                             <button type="button" class="profile__edit-button"></button>
                         </div>
-                        <p class="profile__job">Исследователь океана</p>
+                        <p class="profile__job"></p>
                     </div>
                 </div>
                 <button type="button" class="profile__add-button"></button>
@@ -39,9 +42,9 @@
                 </h2>
                 <form name="editForm" class="popup__form" novalidate>
                     <button type="button" class="popup__close"></button>
-                    <input type="text" id="name" name="nameEdit" class="popup__input popup__input_edit_name" placeholder="Имя" minlength="2" maxlength="40" required>
+                    <input type="text" id="name" name="name" class="popup__input popup__input_edit_name" placeholder="Имя" minlength="2" maxlength="40" required>
                     <span class="name-error popup__error"></span>
-                    <input type="text" id="about" name="aboutEdit" class="popup__input popup__input_edit_about" placeholder="Вид деятельности" minlength="2" maxlength="200" required>
+                    <input type="text" id="about" name="about" class="popup__input popup__input_edit_about" placeholder="Вид деятельности" minlength="2" maxlength="200" required>
                     <span class="about-error popup__error"></span>
                     <button type="submit" class="popup__button">
                         Сохранить
@@ -85,6 +88,36 @@
         </footer>
     </div>
 
+    <section class="popup popup_type_editPhoto">
+        <div class="popup__container popup__container_type_changePhoto">
+            <h2 class="popup__title">
+                Обновить аватар
+            </h2>
+            <form name="photoForm" class="popup__form" novalidate>
+                <button type="button" class="popup__close"></button>
+                <input type="url" id="linkPhoto" name="link" class="popup__input popup__input_edit_pic" placeholder="Ссылка на картинку" required>
+                <span class="linkPhoto-error popup__error"></span>
+                <button type="submit" class="popup__button">
+                    Сохранить
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup popup_type_deleteCard">
+        <div class="popup__container popup__container_type_deleteConfirmation">
+            <h2 class="popup__title">
+                Вы уверены?
+            </h2>
+            <form name="deleteConfirmation" class="popup__form" novalidate>
+                <button type="button" class="popup__close"></button>
+                <button type="submit" class="popup__button">
+                    Да
+                </button>
+            </form>
+        </div>
+    </section>
+
     <div id="templates">
         <template id="element">
             <div class="elements__item">
@@ -94,7 +127,10 @@
                     <h2 class="elements__title">
                         Шаблон
                     </h2>
-                    <button type="button" class="elements__like-button"></button>
+                    <div class="elements__like">
+                        <button type="button" class="elements__like-button"></button>
+                        <span class="elements__like-counter">0</span>
+                    </div>
                 </div>
             </div>
         </template>

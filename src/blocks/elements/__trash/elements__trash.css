@@ -6,6 +6,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 18px;
+    visibility: hidden;
     height: 19px;
     transition: opacity .3s ease;
 }

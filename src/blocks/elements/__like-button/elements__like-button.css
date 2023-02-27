@@ -6,8 +6,6 @@
     width: 22px;
     height: 19px;
     transition: opacity .3s ease;
-    margin-left: 30px;
-    padding-right: 15px;
 }
 
 .elements__like-button:hover {
