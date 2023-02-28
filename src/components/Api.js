@@ -1,15 +1,15 @@
-const handleResponse = (res) => {
-    if (res.ok) {
-        return res.json();
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`);
-}
-
 export class Api {
     constructor(options) {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
+    }
+
+    _handleResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+    
+        return Promise.reject(`Ошибка: ${res.status}`);
     }
 
     getInitialCards() {
@@ -18,7 +18,7 @@ export class Api {
                 authorization: `${this._headers.authorization}`,
             }
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -33,7 +33,7 @@ export class Api {
                 link: item.link
               })
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -45,7 +45,7 @@ export class Api {
                 authorization: `${this._headers.authorization}`,
             }
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -60,7 +60,7 @@ export class Api {
                 about: data.about,
               })
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -74,7 +74,7 @@ export class Api {
                 avatar: data.link,
               })
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -87,7 +87,7 @@ export class Api {
                 authorization: `${this._headers.authorization}`,
             }
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -100,7 +100,7 @@ export class Api {
                 authorization: `${this._headers.authorization}`,
             }
         })
-        .then(handleResponse)
+        .then((res) => this._handleResponse(res))
         .then((data) => {
             return data;
         })
@@ -118,6 +118,8 @@ export class Api {
             if (res.ok) {
                 return res.ok;
             }
+
+            return Promise.reject(`Ошибка: ${res.status}`);
         })
     }
 

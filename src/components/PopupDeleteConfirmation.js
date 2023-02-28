@@ -8,15 +8,16 @@ export class PopupDeleteConfirmation extends Popup {
         this._cardId = '';
     }
 
-    open(cardId) {
+    open(cardId, card) {
         this._cardId = cardId;
+        this._card = card;
         super.open();
     }
 
     setEventListeners() {
         this._popupForm.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._handleSubmitForm(this._cardId);
+            this._handleSubmitForm(this._cardId, this._card);
         });
         super.setEventListeners();
     }

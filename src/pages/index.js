@@ -1,3 +1,5 @@
+// Спасибо за полезные советы. "Можно лучше" обязательно учту на будущее и сделаю чуть позже, у меня уже несколько доработок скопилось:) Сейчас слишком большой объем информации. Спасибо!
+
 import './index.css'
 import '../index.html'
 
@@ -21,9 +23,8 @@ const popupProfileJob = popupProfile.querySelector('.popup__input_edit_about');
 const popupProfileForm = document.forms.editForm;
 const popupAddForm = document.forms.addForm;
 const popupChangePhoto = document.forms.photoForm;
-// const popupDeleteConfirmation = document.forms.deleteConfirmation;
-// const profilePhoto = document.querySelector('.profile__photo');
 const buttonOpenChangePhoto = profile.querySelector('.profile__photo-edit-button');
+let userId = '';
 
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
@@ -40,6 +41,24 @@ const cardList = new Section({
     }
 },
 '.elements');
+
+const userInfo = new UserInfo({
+    name: '.profile__name' ,
+    about: '.profile__job',
+    avatar: '.profile__photo'
+});
+
+
+Promise.all([api.getUserData(), api.getInitialCards()])
+.then(([data, initialCards]) => {
+    userId = data._id;
+    userInfo.setUserInfo(data);
+    userInfo.setUserAvatar(data);
+    cardList.renderItems(initialCards);
+})
+.catch(err => {
+    alert(err);
+});
 
 const profilePhotoFormValidation = new FormValidator(validationConfig, popupChangePhoto);
 profilePhotoFormValidation.enableValidation();
@@ -58,19 +77,19 @@ function createCard(item) {
         link: item.link,
         name: item.name,
         likes: item.likes,
+        user: userId,
         ownerId: item.owner._id,
         cardId: item._id,
         handleCardClick: () => {
             popupWithImage.open(item.link, item.name);
         },
         handleCardDelete: (cardId) => {
-            handlePopupDeleteCard.open(cardId);
+            handlePopupDeleteCard.open(cardId, card);
         },
         setCardLikes: (cardId) => {
             api.putCardLike(cardId)
             .then((data) => {
-                card.likeCounter.textContent = data.likes.length;
-                card.likeButton.classList.add('elements__like-button_active');
+                card.addLike(data);
             })
             .catch((err) => {
                 alert(err);
@@ -79,8 +98,7 @@ function createCard(item) {
         removeCardLikes: (cardId) => {
             api.deleteCardLike(cardId)
             .then((data) => {
-                card.likeCounter.textContent = data.likes.length;
-                card.likeButton.classList.remove('elements__like-button_active');
+                card.removeLike(data);
             })
             .catch((err) => {
                 alert(err);
@@ -93,29 +111,6 @@ function createCard(item) {
     return cardElement;
 }
 
-api.getInitialCards()
-.then((initialCards) => {
-    cardList.renderItems(initialCards);
-})
-.catch((err) => {
-    alert(err);
-});
-
-const userInfo = new UserInfo({
-    name: '.profile__name' ,
-    about: '.profile__job',
-    avatar: '.profile__photo'
-});
-
-api.getUserData()
-.then((data) => {
-    userInfo.setUserInfo(data);
-    userInfo.setUserAvatar(data);
-})
-.catch((err) => {
-    alert(err);
-})
-
 const handlePopupAddPic = new PopupWithForm('.popup_type_addPic', {
     handleSubmitForm: (item) => {
         api.postNewCard(item)
@@ -126,7 +121,10 @@ const handlePopupAddPic = new PopupWithForm('.popup_type_addPic', {
         })
         .catch((err) => {
             alert(err);
-        });
+        })
+        .finally(() => {
+            handlePopupAddPic.renderLoading(false);
+        })
         
     }
 })
@@ -143,6 +141,9 @@ const handlePopupProfile = new PopupWithForm('.popup_type_editInfo', {
         .catch((err) => {
             alert(err);
         })
+        .finally(() => {
+            handlePopupProfile.renderLoading(false);
+        })
     }
 })
 
@@ -158,18 +159,24 @@ const handlePopupChangePhoto = new PopupWithForm('.popup_type_editPhoto', {
         .catch((err) => {
             alert(err);
         })
+        .finally(() => {
+            handlePopupChangePhoto.renderLoading(false);
+        })
     }
 })
 
 handlePopupChangePhoto.setEventListeners();
 
 const handlePopupDeleteCard = new PopupDeleteConfirmation('.popup_type_deleteCard', {
-    handleSubmitForm: (cardId) => {
+    handleSubmitForm: (cardId, card) => {
         api.deleteCard(cardId)
+        .then(() => {
+            card._handleTrashItem();
+            handlePopupDeleteCard.close();
+        })
         .catch((err) => {
             alert(err);
         });
-        handlePopupDeleteCard.close();
     }
 })
 
