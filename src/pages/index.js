@@ -65,6 +65,26 @@ function createCard(item) {
         },
         handleCardDelete: (cardId) => {
             handlePopupDeleteCard.open(cardId);
+        },
+        setCardLikes: (cardId) => {
+            api.putCardLike(cardId)
+            .then((data) => {
+                card.likeCounter.textContent = data.likes.length;
+                card.likeButton.classList.add('elements__like-button_active');
+            })
+            .catch((err) => {
+                alert(err);
+            })
+        },
+        removeCardLikes: (cardId) => {
+            api.deleteCardLike(cardId)
+            .then((data) => {
+                card.likeCounter.textContent = data.likes.length;
+                card.likeButton.classList.remove('elements__like-button_active');
+            })
+            .catch((err) => {
+                alert(err);
+            })
         }
     },
     '#element');
@@ -156,6 +176,7 @@ const handlePopupDeleteCard = new PopupDeleteConfirmation('.popup_type_deleteCar
 handlePopupDeleteCard.setEventListeners();
 
 buttonOpenEditProfilePopup.addEventListener('click', function() {
+    profileFormValidation.toggleSubmitButton();
     profileFormValidation.hideInputErrors();
     const currentInfo = userInfo.getUserInfo();
     popupProfileName.value = currentInfo.name;

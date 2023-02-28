@@ -8,12 +8,10 @@ export class Popup {
     open() {
         this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
-        this._buttonText = this._submitButton.textContent;
     }
 
     close() {
         this._popup.classList.remove('popup_opened');
-        this.renderLoading(false);
         document.removeEventListener('keydown', this._handleEscClose);
     }
 

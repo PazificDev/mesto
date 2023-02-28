@@ -8,6 +8,11 @@ export class PopupWithForm extends Popup {
         this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__input'));
     }
 
+    open() {
+        this._buttonText = this._submitButton.textContent;
+        super.open();
+    }
+
     _getInputValues() {
         const inputValues = {};
         this._inputList.forEach((item) => {
@@ -28,6 +33,7 @@ export class PopupWithForm extends Popup {
 
 
     close() {
+        this.renderLoading(false);
         this._popupForm.reset();
         super.close();
     }

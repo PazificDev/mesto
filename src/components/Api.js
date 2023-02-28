@@ -80,6 +80,32 @@ export class Api {
         })
     }
 
+    putCardLike(id) {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+            method: 'PUT',
+            headers: {
+                authorization: `${this._headers.authorization}`,
+            }
+        })
+        .then(handleResponse)
+        .then((data) => {
+            return data;
+        })
+    }
+
+    deleteCardLike(id) {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `${this._headers.authorization}`,
+            }
+        })
+        .then(handleResponse)
+        .then((data) => {
+            return data;
+        })
+    }
+
     deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
