@@ -113,14 +113,7 @@ export class Api {
                 authorization: `${this._headers.authorization}`,
             }
         })
-        .then((res) => {
-            
-            if (res.ok) {
-                return res.ok;
-            }
-
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then((res) => this._handleResponse(res))
     }
 
 }

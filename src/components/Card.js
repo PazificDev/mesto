@@ -34,7 +34,7 @@ export class Card {
         }
     }
 
-    _handleTrashItem() {
+    handleTrashItem() {
         this._element.remove();
     }
     

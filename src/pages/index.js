@@ -1,4 +1,4 @@
-// Спасибо за полезные советы. "Можно лучше" обязательно учту на будущее и сделаю чуть позже, у меня уже несколько доработок скопилось:) Сейчас слишком большой объем информации. Спасибо!
+// Спасибо за полезные советы. "Можно лучше" обязательно учту на будущее и сделаю чуть позже, у меня уже несколько доработок скопилось:) Сейчас слишком большой объем информации. Спасибо
 
 import './index.css'
 import '../index.html'
@@ -171,7 +171,7 @@ const handlePopupDeleteCard = new PopupDeleteConfirmation('.popup_type_deleteCar
     handleSubmitForm: (cardId, card) => {
         api.deleteCard(cardId)
         .then(() => {
-            card._handleTrashItem();
+            card.handleTrashItem();
             handlePopupDeleteCard.close();
         })
         .catch((err) => {
